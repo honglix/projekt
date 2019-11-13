@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
+  as :user do
+     match '/user/confirmation' => 'confirmations#update', :via => :put, :as => :update_user_confirmation
+ end
+
   devise_for :users, controllers: {
     registrations: 'registrations',
-    confirmation: 'confirmations'
+    confirmations: 'confirmations'
   }
   devise_scope :user do
     get 'login', to: 'devise/sessions#new'
